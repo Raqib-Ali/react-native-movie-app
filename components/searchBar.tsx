@@ -1,14 +1,16 @@
 import { icons } from '@/constants/icons';
 import { useRouter } from 'expo-router';
 import React from 'react';
-import { Image, StyleSheet, TextInput, View } from 'react-native';
+import { Image, TextInput, View } from 'react-native';
 
 interface Props {
     onPress?: () => void;
     placeholder: string;
+    onChangeText: (text: string) => void,
+    value: string
 }
 
-const SearchBar = ({ onPress, placeholder }: Props) => {
+const SearchBar = ({ onPress, placeholder, onChangeText, value }: Props) => {
     const router = useRouter()
     return (
         <View
@@ -16,9 +18,11 @@ const SearchBar = ({ onPress, placeholder }: Props) => {
             <Image source={icons.search} className='size-5' />
             <TextInput
                 placeholder={placeholder}
-                className='ml-3'
+                className='ml-3 w-full'
                 placeholderTextColor={'#adb5db'}
                 onPress={onPress}
+                value={value}
+                onChangeText={onChangeText}
             />
         </View>
 
@@ -26,5 +30,3 @@ const SearchBar = ({ onPress, placeholder }: Props) => {
 }
 
 export default SearchBar
-
-const styles = StyleSheet.create({})

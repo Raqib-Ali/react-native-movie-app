@@ -14,7 +14,7 @@ const index = () => {
 
     const { data, loading, error
     } = useFetch(() => fetchMovie({
-        query: "interstellar"
+        query: ""
     }))
 
     return (
@@ -22,6 +22,7 @@ const index = () => {
             <Image source={images.bg} className='h-full w-full absolute z-0' />
             <ScrollView className='flex-1 px-5' contentContainerStyle={{ minHeight: '100%', paddingBottom: 10 }}>
                 <Image source={icons.logo} className='w-12 h-10 mx-auto mt-10'></Image>
+                <SearchBar onPress={() => router.push('/search')} placeholder='Search a movie' />
 
                 {
                     loading ? <ActivityIndicator
@@ -31,8 +32,8 @@ const index = () => {
                     /> : error ? error?.message :
 
                         <>
-                            <SearchBar onPress={() => router.push('/search')} placeholder='Search a movie' />
-                            <Text className='font-bold text-lg'>Latest Movie</Text>
+
+                            <Text className='font-bold text-lg text-slate-500'>Latest Movie</Text>
 
                             <FlatList
                                 data={data}
@@ -46,7 +47,7 @@ const index = () => {
                                     justifyContent: 'center',
                                     gap: 10,
                                     padding: 5,
-                                    marginBottom: 10,
+                                    marginVertical: 14
                                 }}
 
                             />
